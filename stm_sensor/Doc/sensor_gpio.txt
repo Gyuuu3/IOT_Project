@@ -1,0 +1,11 @@
+sensor
+当前接入传感器设备：DHT11、超声波
+通信设备：esp32（串口）
+
+
+pa0按钮		pa1 小灯
+pa2(uart2 tx)、pa3(uart2 rx) 	pa9(uart1 tx)、pa10(uart1 rx)
+
+pa4~pa7		pb0、pb1		ADC
+pa8	接入DHT11
+pb12、pb13	分别接HC-SR04的trig和echo

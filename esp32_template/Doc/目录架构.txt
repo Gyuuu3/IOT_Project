@@ -1,0 +1,32 @@
+board_esp32s3/
+├─ Doc/                                      		# 说明文档、接线图、协议文档
+├─ components/       
+│  ├─ config/
+│  │  ├─ board_config.h                      	# 引脚、波特率、WiFi/MQTT地址、串口编号
+│  │  ├─ task_config.h                       		# 任务优先级、栈大小、延时
+│  │  └─ task_handle.h                       	# 全局任务句柄、队列句柄           
+│  ├─ drivers/                               		# 底层硬件驱动
+│  │  ├─ gpio_key.c/h
+│  │  ├─ gpio_led.c/h
+│  │  ├─ uart_sensor.c/h                        	# 串口2：ESP <-> STM32 传感器
+│  │  └─ uart_actuator.c/h                        	# 串口1：ESP <-> STM32 执行器
+│  └─ middleware/                           
+│     	├─ debug_print.c/h                     	# 日志打印封装
+│     	├─ ring_buffer.c/h                     	# 环形缓冲区
+│     	└─ protocol_frame.c/h                  	# ESP与STM自定义通信帧协议
+├─ main/                                     
+│  ├─ tasks/
+│  │  ├─ task_wifi.c/h                       		# WiFi连接重连任务
+│  │  ├─ task_mqtt.c/h                       	# MQTT收发云消息任务
+│  │  ├─ task_sensor.c/h                        	# ESP ↔ STM32 传感器串口通信任务
+│  │  ├─ task_actuator.c/h                        	# ESP ↔ STM32 执行器串口通信任务
+│  │  ├─ task_test.c/h                        	# 串口通信测试任务
+│  │  └─ task_debug.c/h                      	# 日志打印监控任务
+│  ├─ app/
+│  │  └─ device_logic.c/h                    	# 指令解析/发布 逻辑
+│  ├─ system_init.c/h                                 # 硬件任务初始化
+│  ├─ main.c                                 		# main.c 入口
+│  └─ CMakeLists.txt                         		# main模块编译配置
+├─ sdkconfig                               		
+├─ CMakeLists.txt                            		
+└─ .gitignore

@@ -1,0 +1,20 @@
+actuator
+当前接入执行器：小灯1、小灯2，电机1/2，舵机1/2
+通信设备：esp32（串口）
+
+pa0(gpio_key1)		
+pa1(gpio_led1)		pb0(pwm_led2)	
+pa6	pb12 pb13	(motor1:PWM IN1 IN2)
+pa7	pb14 pb15	(motor2:PWM IN1 IN2)	
+pb8(servo1) 		pb9(servo2)
+
+
+pa2(uart2_tx)	pa3(uart2_rx)	pa9(uart1_tx)	pa10(uart1_rx)
+
+
+
+待用： pa4、pa5、pa12、pb5、pb12、pb13、pb14、pb15
+	  [pa8、pa11]				(TIM1ch1，TIM1ch4)
+	  pb1					      （TIM3ch4）		
+	  [pb6、pb7]				(I2C1、TIM4ch1/2)
+	  [pb10、pb11]			      （I2C2、uart3）

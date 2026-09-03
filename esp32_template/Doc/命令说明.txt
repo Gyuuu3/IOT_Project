@@ -1,0 +1,30 @@
+目前暂时设置了
+执行器端：led1/2，motor1/2，servo1/2
+传感器端：temp、humi、distance
+命令格式普遍为 [设备] [设备编号] [命令] （[参数] 可选）
+
+且led1为普通gpio灯，对于led1，命令格式为：
+led 1 on 		：灯1开灯
+led 1 off		：灯1关灯
+led 1 toggle	：灯1翻转电平
+
+而led2为pwm灯，对于led2，可在led1的基础上多加一个亮度参数，即：
+led 2 on 60	：灯2以60%的亮度开灯
+led 2 toggle	：灯2翻转电平（若led2当前亮度不为0，翻转即为关灯；反之即为100%亮度开灯）
+
+motor1/2相同，都是普通直流电机，命令格式：
+motor 1 run 		：电机1满转速正转
+motor 1 stop		：电机1停转
+motor 1 reversal 	：电机1满转速反转
+motor 1 run 60 	：电机1以60%转速正转
+
+servo1/2相同，都是普通舵机，命令格式：
+servo 1 forward 30	：舵机1可转范围内正转30°
+servo 1 reversal	 60	：舵机1可转范围内逆转60°
+servo 1 reset		：舵机1复位
+
+temp、humi、dist分别为温度、湿度、距离，命令格式为：
+sensor 1 get_temp	：获取温度数据
+sensor 1 get_humi	：获取湿度数据
+sensor 1 get_dist	：获取距离数据
+sensor 1 get_all		：获取所有传感器数据

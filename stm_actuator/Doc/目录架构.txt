@@ -1,0 +1,72 @@
+board_stm32f103/
+├─ cubemx_gen/               			# 【自动生成层】CubeMX专属隔离目录
+│  ├─ Core/Inc + Src         			# MX_GPIO、MX_USART、系统时钟、中断初始化
+│  └─ Drivers/STM32F1xx_HAL_Driver 	# 原厂HAL库底层
+├─ Core/                     				# 【业务核心手写层】项目专属逻辑，完全独立
+│  ├─ config/                				# 全局宏、引脚、任务参数配置
+│  ├─ tasks/                 				# FreeRTOS所有任务入口文件
+│  └─ app/                   				# 设备联动业务逻辑（无硬件操作，纯逻辑判断）
+├─ Drivers/                  				# 【扩展驱动层】手写外设封装（按键消抖、电机、舵机等）
+├─ Middleware/                			# 【通用中间件层】全项目可复用工具组件
+├─ FreeRTOS/                 				# RTOS内核与配置文件
+├─ User/                     				# 【系统启动层】统一硬件+RTOS初始化入口
+└─ Keil_Project/             				# IDE工程文件
+
+
+——————————————————————————————————————————————————————————————————————————————————————————————————
+
+board_stm32f103/
+├─ Doc/							#说明文件 
+├─ cubemx_gen/               			# CubeMX自动生成，仅这里会被刷新覆盖
+│  ├─ Core/
+│  │  ├─ Inc/
+│  │  │  ├─ main.h
+│  │  │  ├─ gpio.h
+│  │  │  ├─ dma.h
+│  │  │  ├─ tim.h
+│  │  │  └─ usart.h
+│  │  └─ Src/
+│  │     ├─ main.c
+│  │     ├─ gpio.c
+│  │     ├─ dma.c
+│  │     ├─ tim.c
+│  │     └─ usart.c
+│  └─ Drivers/STM32F1xx_HAL_Driver/...（HAL库自动生成，省略）
+├─ Core/                     				# 独立任务模块
+│  ├─ config/
+│  │  ├─ board_config.h
+│  │  ├─ task_config.h
+│  │  └─ task_handle.h
+│  ├─ tasks/
+│  │  ├─ task_led.c
+│  │  ├─ task_key.c
+│  │  ├─ task_esp.c
+│  │  ├─ task_actuator.c
+│  │  └─ task_debug.c
+│  └─ app/
+│     └─ device_logic.c      
+├─ Drivers/                       			# 手写扩展外设驱动
+│  ├─ ext_gpio_led.c
+│  ├─ ext_gpio_led.h
+│  ├─ ext_uart_esp.c
+│  ├─ ext_uart_esp.h
+│  ├─ ext_pwm_motor.c
+│  ├─ ext_pwm_motor.h
+│  ├─ ext_pwm_led.c
+│  ├─ ext_pwm_led.h
+│  ├─ ext_pwm_servo.c
+│  ├─ ext_pwm_servo.h
+│  ├─ ext_gpio_key.c
+│  └─ ext_gpio_key.h
+├─ Middleware/                			# 通用工具、协议、缓冲区
+│  ├─ protocol_frame.c
+│  ├─ protocol_frame.h
+│  ├─ ring_buffer.c
+│  └─ ring_buffer.h
+├─ FreeRTOS/                   			# 手动移植FreeRTOS内核 
+│  └─ FreeRTOSConfig.h
+├─ User/                           			# 系统统一初始化入口
+│  ├─ system_init.c
+│  └─ system_init.h
+└─ Keil_Project/
+   └─ stm32_f103_freertos.uvprojx
